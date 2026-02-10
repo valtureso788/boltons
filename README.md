@@ -83,6 +83,8 @@ pip install -e ".[dev]"
 ```
 
 После этого модуль `boltons_practical` доступен в Python как обычная установленная библиотека.
+<img width="1686" height="552" alt="image" src="https://github.com/user-attachments/assets/c4474eb9-8f10-4a6d-b2e7-56af3c567bc8" />
+
 
 ---
 
