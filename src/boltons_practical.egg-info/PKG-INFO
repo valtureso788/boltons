@@ -1,0 +1,190 @@
+Metadata-Version: 2.4
+Name: boltons-practical
+Version: 0.1.0
+Summary: Учебная библиотека утилит в стиле boltons для курса по инженерным инструментам.
+Author-email: Student <student@example.com>
+License: MIT
+Keywords: boltons,utilities,education,tools
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: ruff>=0.5; extra == "dev"
+
+## boltons-practical
+
+Учебная библиотека утилит в духе [`boltons`](https://github.com/mahmoud/boltons)  
+для курса «Исследование и практическое применение инженерного инструмента».
+
+Библиотека показывает, как выглядит **аккуратно спроектированный Python‑пакет**:
+с понятным API, типизацией, тестами и удобной инструкцией запуска.
+
+---
+
+### Возможности
+
+- **`fileutils`** – безопасная работа с файловой системой:
+  - **`ensure_dir / mkdir_p`** – гарантированно создают директорию (аналог `mkdir -p`);
+  - **`iter_find_files`** – ленивый поиск файлов по glob‑маске;
+  - **`safe_write_text`** – атомарная запись текста через временный файл;
+  - **`copy_file_atomic`** – безопасное копирование файла;
+  - **`read_text_lines`** – удобное чтение файла построчно;
+  - **`touch`** – аналог Unix‑команды `touch`.
+
+- **`dictutils`** – удобные операции над словарями:
+  - **`FrozenDict`** – иммутабельный и хэшируемый словарь;
+  - **`merge_dicts`** – слияние словарей (в т.ч. глубокое);
+  - **`pick` / `omit`** – выбор или исключение подмножеств ключей.
+
+- **`iterutils`** – функции для работы с потоками данных:
+  - **`chunked`** – разбиение на чанки фиксированного размера;
+  - **`windowed`** – скользящее окно по последовательности;
+  - **`unique_everseen`** – удаление дубликатов с сохранением порядка.
+
+- **`functional`** – утилиты для функционального стиля:
+  - **`compose`** – композиция функций `f(g(h(x)))`;
+  - **`memoize`** – мемоизация результата функции с опциональным TTL.
+
+---
+
+### Структура проекта
+
+```text
+.
+├─ pyproject.toml          # метаданные проекта и зависимости
+├─ README.md               # документация и инструкция запуска
+├─ src/
+│  └─ boltons_practical/
+│     ├─ __init__.py       # публичный API пакета
+│     ├─ fileutils.py
+│     ├─ dictutils.py
+│     ├─ iterutils.py
+│     └─ functional.py
+└─ tests/                  # модульные тесты для всех утилит
+   ├─ test_fileutils.py
+   ├─ test_dictutils.py
+   ├─ test_iterutils.py
+   └─ test_functional.py
+```
+
+---
+
+### Установка (локально)
+
+Ниже показан универсальный способ, который корректно работает и на Windows, и на Linux/macOS.
+
+- **1. Создать и активировать виртуальное окружение**
+
+Windows (PowerShell):
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+Linux / macOS:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+- **2. Установить пакет в режиме разработки**
+
+```bash
+pip install -e ".[dev]"
+```
+
+После этого модуль `boltons_practical` доступен в Python как обычная установленная библиотека.
+
+---
+
+### Быстрый старт (пример использования)
+
+```python
+from boltons_practical import (
+    ensure_dir,
+    chunked,
+    FrozenDict,
+    compose,
+    memoize,
+)
+
+# Работа с файловой системой
+ensure_dir("data/tmp")
+
+for chunk in chunked(range(10), 3):
+    print("chunk:", chunk)
+
+# Работа со словарями
+config = FrozenDict({"env": "dev", "debug": True})
+print("env:", config["env"])  # dev
+
+# Функциональный стиль
+to_str_upper = compose(str.upper, str)
+print(to_str_upper(config["env"]))  # DEV
+
+# Мемоизация
+calls = {"count": 0}
+
+@memoize(ttl=1.0)
+def slow_add(a: int, b: int) -> int:
+    calls["count"] += 1
+    return a + b
+
+print(slow_add(1, 2))  # первый вызов – вычисление
+print(slow_add(1, 2))  # второй вызов – из кеша
+print("calls:", calls["count"])  # 1
+```
+
+---
+
+### Запуск тестов
+
+После установки зависимостей (`pip install -e ".[dev]"`) запустить тесты можно так:
+
+```bash
+pytest -q
+```
+
+Если тесты проходят, значит библиотека установлена и работает корректно.
+
+---
+
+### Инструкция по работе с Git и публикации на GitHub
+
+Ниже — полный набор команд, которые нужно выполнить **в корне проекта**  
+для инициализации репозитория и отправки кода в ваш GitHub‑репозиторий
+[`https://github.com/valtureso788/boltons.git`](https://github.com/valtureso788/boltons.git).
+
+1. **Инициализация репозитория и первый коммит**
+
+```bash
+git init
+git add .
+git commit -m "Initial implementation of boltons-practical library"
+```
+
+2. **Привязка удалённого репозитория и пуш**
+
+```bash
+git remote add origin https://github.com/valtureso788/boltons.git
+git branch -M main
+git push -u origin main
+```
+
+После выполнения этих команд:
+
+- код библиотеки будет находиться в репозитории `valtureso788/boltons` на GitHub;
+- при следующих изменениях достаточно делать:
+
+```bash
+git add .
+git commit -m "Your message"
+git push
+```
+
+Это создаёт **полноценный, аккуратно оформленный учебный репозиторий**, готовый для проверки. 
+
+

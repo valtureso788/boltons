@@ -1,0 +1,12 @@
+*.txt text
+*.py text
+*.md text
+*.json text
+*.yml text
+*.yaml text
+*.ini text
+*.cfg text
+*.toml text
+
+# Явно указываем для этих файлов
+src/boltons_practical.egg-info/*.txt text

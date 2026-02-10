@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boltons-practical"
+version = "0.1.0"
+description = "Учебная библиотека утилит в стиле boltons для курса по инженерным инструментам."
+authors = [
+  { name = "Student", email = "student@example.com" }
+]
+requires-python = ">=3.10"
+keywords = ["boltons", "utilities", "education", "tools"]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "mypy>=1.0",
+  "ruff>=0.5",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

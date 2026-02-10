@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+src/boltons_practical/__init__.py
+src/boltons_practical/dictutils.py
+src/boltons_practical/fileutils.py
+src/boltons_practical/functional.py
+src/boltons_practical/iterutils.py
+src/boltons_practical.egg-info/PKG-INFO
+src/boltons_practical.egg-info/SOURCES.txt
+src/boltons_practical.egg-info/dependency_links.txt
+src/boltons_practical.egg-info/requires.txt
+src/boltons_practical.egg-info/top_level.txt
+tests/test_dictutils.py
+tests/test_fileutils.py
+tests/test_functional.py
+tests/test_iterutils.py
