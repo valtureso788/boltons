@@ -134,43 +134,6 @@ print("calls:", calls["count"])  # 1
 pytest -q
 ```
 
-Если тесты проходят, значит библиотека установлена и работает корректно.
 
----
-
-### Инструкция по работе с Git и публикации на GitHub
-
-Ниже — полный набор команд, которые нужно выполнить **в корне проекта**  
-для инициализации репозитория и отправки кода в ваш GitHub‑репозиторий
-[`https://github.com/valtureso788/boltons.git`](https://github.com/valtureso788/boltons.git).
-
-1. **Инициализация репозитория и первый коммит**
-
-```bash
-git init
-git add .
-git commit -m "Initial implementation of boltons-practical library"
-```
-
-2. **Привязка удалённого репозитория и пуш**
-
-```bash
-git remote add origin https://github.com/valtureso788/boltons.git
-git branch -M main
-git push -u origin main
-```
-
-После выполнения этих команд:
-
-- код библиотеки будет находиться в репозитории `valtureso788/boltons` на GitHub;
-- при следующих изменениях достаточно делать:
-
-```bash
-git add .
-git commit -m "Your message"
-git push
-```
-
-Это создаёт **полноценный, аккуратно оформленный учебный репозиторий**, готовый для проверки. 
 
 
